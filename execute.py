@@ -20,4 +20,4 @@ def experiment(lin_reg_cfg, visualise_prediction=True):
 
 if __name__ == '__main__':
     from configs.linear_regression_cfg import cfg as lin_reg_cfg
-    experiment(lin_reg_cfg, visualise_prediction=False)
+    experiment(lin_reg_cfg, visualise_prediction=True)
