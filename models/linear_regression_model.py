@@ -1,9 +1,10 @@
 import numpy as np
 
-class LinearRegression():
+
+class LinearRegression:
 
     def __init__(self, base_functions: list):
-        self.weights = None # TODO: init weights using np.random.randn (normal distribution with mean=0 and variance=1)
+        self.weights = None  # TODO: init weights using np.random.randn (normal distribution with mean=0 and variance=1)
         self.base_functions = base_functions
 
     @staticmethod
