@@ -24,7 +24,7 @@ class Visualisation:
 
         fig.add_trace(go.Scatter(
             x=inputs,
-            y=prediction + 100,
+            y=prediction,
             name="Предсказания модели",
         ))
 
