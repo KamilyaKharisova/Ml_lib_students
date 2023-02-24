@@ -6,7 +6,6 @@ class Visualisation:
 
     @staticmethod
     def visualise_predicted_trace(prediction: np.ndarray, inputs: np.ndarray, targets: np.ndarray, plot_title=''):
-        # TODO visualise predicted trace and targets
         """
 
         :param prediction: model prediction based on inputs (oy for one trace)
