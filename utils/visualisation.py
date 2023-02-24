@@ -16,9 +16,6 @@ class Visualisation:
         """
         fig = go.Figure()
 
-        print(prediction.shape)
-        print(targets.shape)
-
         fig.add_trace(go.Scatter(
             x=inputs,
             y=targets,
