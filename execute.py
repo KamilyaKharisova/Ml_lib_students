@@ -20,4 +20,12 @@ def experiment(lin_reg_cfg, visualise_prediction=True):
 
 if __name__ == '__main__':
     from configs.linear_regression_cfg import cfg as lin_reg_cfg
+
+    lin_reg_cfg.base_functions = [lambda x: x]
+    experiment(lin_reg_cfg, visualise_prediction=True)
+
+    lin_reg_cfg.base_functions = [lambda x: x ** i for i in range(1, 8 + 1)]
+    experiment(lin_reg_cfg, visualise_prediction=True)
+
+    lin_reg_cfg.base_functions = [lambda x: x ** i for i in range(1, 100 + 1)]
     experiment(lin_reg_cfg, visualise_prediction=True)
