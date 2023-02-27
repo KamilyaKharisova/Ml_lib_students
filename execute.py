@@ -15,7 +15,7 @@ def experiment(lin_reg_cfg, visualise_prediction=True):
         Visualisation.visualise_predicted_trace(predictions,
                                                 linreg_dataset['inputs'],
                                                 linreg_dataset['targets'],
-                                                plot_title=f'Полином степени {len(lin_reg_cfg.base_functions)}; MSE = {error}')
+                                                plot_title=f'Полином степени {len(lin_reg_cfg.base_functions)}; MSE = {round(error, 2)}')
 
 
 if __name__ == '__main__':
