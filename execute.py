@@ -24,8 +24,8 @@ if __name__ == '__main__':
     lin_reg_cfg.base_functions = [lambda x: x]
     experiment(lin_reg_cfg, visualise_prediction=True)
 
-    lin_reg_cfg.base_functions = [lambda x: x ** i for i in range(1, 8 + 1)]
+    lin_reg_cfg.base_functions = [lambda x, power=i: x ** power for i in range(1, 8 + 1)]
     experiment(lin_reg_cfg, visualise_prediction=True)
 
-    lin_reg_cfg.base_functions = [lambda x: x ** i for i in range(1, 100 + 1)]
+    lin_reg_cfg.base_functions = [lambda x, power=i: x ** power for i in range(1, 100 + 1)]
     experiment(lin_reg_cfg, visualise_prediction=True)
