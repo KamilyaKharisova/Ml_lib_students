@@ -18,9 +18,17 @@ def experiment(lin_reg_cfg, visualise_prediction=True):
         Visualisation.visualise_predicted_trace(predictions,
                                                 linreg_dataset['inputs'],
                                                 linreg_dataset['targets'],
-                                                plot_title=f'Полином степени {len(lin_reg_cfg.base_functions)}; MSE = {error}')
+                                                plot_title=f'Полином степени {len(lin_reg_cfg.base_functions)}; MSE = {round(error, 2)}')
 
 
 if __name__ == '__main__':
     from configs.linear_regression_cfg import cfg as lin_reg_cfg
-    experiment(lin_reg_cfg,visualise_prediction=True)
+
+    lin_reg_cfg.base_functions = [lambda x: x]
+    experiment(lin_reg_cfg, visualise_prediction=True)
+
+    lin_reg_cfg.base_functions = [lambda x, power=i: x ** power for i in range(1, 8 + 1)]
+    experiment(lin_reg_cfg, visualise_prediction=True)
+
+    lin_reg_cfg.base_functions = [lambda x, power=i: x ** power for i in range(1, 100 + 1)]
+    experiment(lin_reg_cfg, visualise_prediction=True)
