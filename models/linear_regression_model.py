@@ -1,9 +1,10 @@
 import numpy as np
 
+
 class LinearRegression():
 
     def __init__(self, base_functions: list):
-        self.weights = None # TODO: init weights using np.random.randn (normal distribution with mean=0 and variance=1)
+        self.weights = np.random.randn(len(base_functions) + 1)
         self.base_functions = base_functions
 
     @staticmethod
@@ -12,16 +13,17 @@ class LinearRegression():
         pass
 
     def __plan_matrix(self, inputs: np.ndarray) -> np.ndarray:
-        # TODO build Plan matrix using list of lambda functions defined in config. Use only one loop (for base_functions)
-        pass
+        plan_matrix = [np.ones_like(inputs)]
+        for fun in self.base_functions:
+            plan_matrix.append(fun(inputs))
+        return np.array(plan_matrix).T
 
     def __calculate_weights(self, pseudoinverse_plan_matrix: np.ndarray, targets: np.ndarray) -> None:
         """calculate weights of the model using formula from the lecture. Not this homework"""
         pass
 
     def calculate_model_prediction(self, plan_matrix) -> np.ndarray:
-        # TODO calculate prediction of the model (y) using formula from the lecture
-        pass
+        return np.dot(plan_matrix, self.weights.T).reshape(-1)
 
     def train_model(self, inputs: np.ndarray, targets: np.ndarray) -> None:
         """Not this homework"""

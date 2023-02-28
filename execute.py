@@ -4,9 +4,6 @@ from utils.metrics import MSE
 from utils.visualisation import Visualisation
 
 
-
-
-
 def experiment(lin_reg_cfg, visualise_prediction=True):
     lin_reg_model = LinearRegression(lin_reg_cfg.base_functions)
     linreg_dataset = LinRegDataset()(lin_reg_cfg.dataframe_path)
@@ -22,5 +19,10 @@ def experiment(lin_reg_cfg, visualise_prediction=True):
 
 
 if __name__ == '__main__':
-    from configs.linear_regression_cfg import cfg as lin_reg_cfg
-    experiment(lin_reg_cfg,visualise_prediction=True)
+    from configs.linear_regression_cfg import cfg as lin_reg_cfg, init_base_functions
+    init_base_functions(1)
+    experiment(lin_reg_cfg, visualise_prediction=True)
+    init_base_functions(8)
+    experiment(lin_reg_cfg, visualise_prediction=True)
+    init_base_functions(100)
+    experiment(lin_reg_cfg, visualise_prediction=True)
