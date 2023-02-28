@@ -19,5 +19,9 @@ def experiment(lin_reg_cfg, visualise_prediction=True):
 
 
 if __name__ == '__main__':
-    from configs.linear_regression_cfg import cfg as lin_reg_cfg
+    from configs.linear_regression_cfg import cfg as lin_reg_cfg, update_base_functions
     experiment(lin_reg_cfg,visualise_prediction=True)
+    update_base_functions(8)
+    experiment(lin_reg_cfg, visualise_prediction=True)
+    update_base_functions(1)
+    experiment(lin_reg_cfg, visualise_prediction=True)
