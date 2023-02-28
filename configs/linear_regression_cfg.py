@@ -1,6 +1,10 @@
 from easydict import EasyDict
 import numpy as np
 cfg = EasyDict()
-cfg.dataframe_path = ''
+cfg.dataframe_path = 'linear_regression_dataset.csv'
 
-cfg.base_functions = [] # TODO list of basis functions
+cfg.base_functions = [lambda x, i=i: x**i for i in range(1, 100 + 1)]
+
+
+def update_base_functions(count: int):
+    cfg.base_functions = [lambda x, i=i: x**i for i in range(1, count + 1)]
