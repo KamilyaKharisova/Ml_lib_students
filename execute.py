@@ -10,7 +10,7 @@ from utils.visualisation import Visualisation
 def experiment(lin_reg_cfg, visualise_prediction=True):
     lin_reg_model = LinearRegression(lin_reg_cfg.base_functions)
     linreg_dataset = LinRegDataset()(lin_reg_cfg.dataframe_path)
-
+ 
     predictions = lin_reg_model(linreg_dataset['inputs'])
     error = MSE(predictions, linreg_dataset['targets'])
 
@@ -22,5 +22,12 @@ def experiment(lin_reg_cfg, visualise_prediction=True):
 
 
 if __name__ == '__main__':
-    from configs.linear_regression_cfg import cfg as lin_reg_cfg
+    from configs.linear_regression_cfg import cfg as lin_reg_cfg 
+    from configs.linear_regression_cfg import var2, var3
     experiment(lin_reg_cfg,visualise_prediction=True)
+
+    lin_reg_cfg.base_functions = var2
+    experiment(lin_reg_cfg, visualise_prediction=True)
+
+    lin_reg_cfg.base_functions = var3
+    experiment(lin_reg_cfg, visualise_prediction=True)
