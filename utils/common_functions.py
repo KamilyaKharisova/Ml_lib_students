@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from typing import Union
 
 def read_dataframe_file(path_to_file:str) -> Union[pd.DataFrame,None]:
