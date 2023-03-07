@@ -2,36 +2,39 @@ import numpy as np
 
 
 class LinearRegression:
+    class LinearRegression():
 
-    def __init__(self, base_functions: list):
-        """init weights using np.random.randn (normal distribution with mean=0 and variance=1)"""
-        self.weights = np.random.randn(1, len(base_functions))
-        self.base_functions = base_functions
+        def __init__(self, base_functions, reg_coeff):
+            self.weights = None
+            self.base_functions = base_functions
+            self.reg_coeff = reg_coeff
 
-    @staticmethod
-    def __pseudoinverse_matrix(matrix: np.ndarray) -> np.ndarray:
-        """calculate pseudoinverse matrix using SVD. Not this homework """
-        pass
+        def __pseudoinverse_matrix(self, matrix):
+            U, s, VT = np.linalg.svd(matrix)
+            s_inv = np.zeros_like(matrix).T
+            s_inv[:len(s), :len(s)] = np.diag(s ** -1)
+            return VT.T @ s_inv @ U.T
 
-    def __plan_matrix(self, inputs: np.ndarray) -> np.ndarray:
-        """build Plan matrix using list of lambda functions defined in config. Use only one loop (for base_functions)"""
-        return np.array([bf(inputs) for bf in self.base_functions]).T
+        def __plan_matrix(self, inputs):
+            num_inputs = inputs.shape[0]
+            num_functions = len(self.base_functions)
+            plan_matrix = np.zeros((num_inputs, num_functions))
+            for i, function in enumerate(self.base_functions):
+                plan_matrix[:, i] = function(inputs)
+            return plan_matrix
 
-    def __calculate_weights(self, pseudoinverse_plan_matrix: np.ndarray, targets: np.ndarray) -> None:
-        """calculate weights of the model using formula from the lecture. Not this homework"""
-        pass
+        def __calculate_weights(self, plan_matrix, targets):
+            self.weights = np.linalg.inv(
+                plan_matrix.T @ plan_matrix + self.reg_coeff * np.eye(plan_matrix.shape[1])) @ plan_matrix.T @ targets
 
-    def calculate_model_prediction(self, plan_matrix) -> np.ndarray:
-        """calculate prediction of the model (y) using formula from the lecture"""
-        return np.dot(self.weights, plan_matrix.T)
+        def calculate_model_prediction(self, plan_matrix):
+            return plan_matrix @ self.weights
 
-    def train_model(self, inputs: np.ndarray, targets: np.ndarray) -> None:
-        """Not this homework"""
-        pass
+        def train_model(self, inputs, targets):
+            plan_matrix = self.__plan_matrix(inputs)
+            self.__calculate_weights(plan_matrix, targets)
 
-    def __call__(self, inputs: np.ndarray) -> np.ndarray:
-        """return prediction of the model"""
-        plan_matrix = self.__plan_matrix(inputs)
-        predictions = self.calculate_model_prediction(plan_matrix)
-
-        return predictions
+        def __call__(self, inputs):
+            plan_matrix = self.__plan_matrix(inputs)
+            predictions = self.calculate_model_prediction(plan_matrix)
+            return predictions

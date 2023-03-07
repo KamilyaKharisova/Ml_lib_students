@@ -6,14 +6,7 @@ class Visualisation:
 
     @staticmethod
     def visualise_predicted_trace(prediction: np.ndarray, inputs: np.ndarray, targets: np.ndarray, plot_title=''):
-        """visualise predicted trace and targets
-        :param prediction: model prediction based on inputs (oy for one trace)
-        :param inputs: inputs variables (ox for both)
-        :param targets: target variables (oy for one trace)
-        :param plot_title: plot title
-        """
-
-        prediction = prediction.ravel()  # return a contiguous flattened array
+        prediction = prediction.ravel()
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=inputs, y=prediction, mode='lines', name='Prediction'))
         fig.add_trace(go.Scatter(x=inputs, y=targets, mode='markers', name='Target'))
